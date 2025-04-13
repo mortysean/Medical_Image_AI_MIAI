@@ -1,0 +1,100 @@
+Watching for file changes with StatReloader
+[13/Apr/2025 09:02:14] "POST /api/predict/ HTTP/1.1" 200 253
+[13/Apr/2025 09:02:37] "GET /admin/auth/group/ HTTP/1.1" 200 7693
+[13/Apr/2025 09:02:37] "GET /static/admin/css/base.css HTTP/1.1" 304 0
+[13/Apr/2025 09:02:37] "GET /static/admin/css/dark_mode.css HTTP/1.1" 304 0
+[13/Apr/2025 09:02:37] "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 304 0
+[13/Apr/2025 09:02:37] "GET /static/admin/css/responsive.css HTTP/1.1" 304 0
+[13/Apr/2025 09:02:37] "GET /static/admin/js/theme.js HTTP/1.1" 304 0
+[13/Apr/2025 09:02:37] "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 304 0
+[13/Apr/2025 09:02:37] "GET /static/admin/js/jquery.init.js HTTP/1.1" 304 0
+[13/Apr/2025 09:02:37] "GET /static/admin/css/changelists.css HTTP/1.1" 304 0
+[13/Apr/2025 09:02:37] "GET /static/admin/js/core.js HTTP/1.1" 304 0
+[13/Apr/2025 09:02:37] "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+[13/Apr/2025 09:02:37] "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 304 0
+[13/Apr/2025 09:02:37] "GET /static/admin/js/actions.js HTTP/1.1" 304 0
+[13/Apr/2025 09:02:37] "GET /static/admin/js/urlify.js HTTP/1.1" 304 0
+[13/Apr/2025 09:02:37] "GET /static/admin/img/search.svg HTTP/1.1" 304 0
+[13/Apr/2025 09:02:37] "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 304 0
+[13/Apr/2025 09:02:37] "GET /static/admin/js/prepopulate.js HTTP/1.1" 304 0
+[13/Apr/2025 09:02:37] "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 304 0
+[13/Apr/2025 09:02:37] "GET /static/admin/js/filters.js HTTP/1.1" 304 0
+[13/Apr/2025 09:02:37] "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 304 0
+[13/Apr/2025 09:02:37] "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 304 0
+[13/Apr/2025 09:02:39] "GET /admin/auth/user/ HTTP/1.1" 200 11282
+[13/Apr/2025 09:02:39] "GET /static/admin/img/icon-yes.svg HTTP/1.1" 304 0
+[13/Apr/2025 09:02:39] "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+[13/Apr/2025 09:02:39] "GET /static/admin/img/sorting-icons.svg HTTP/1.1" 304 0
+[13/Apr/2025 09:02:39] "GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 304 0
+[13/Apr/2025 09:02:43] "GET /admin/auth/group/ HTTP/1.1" 200 7693
+[13/Apr/2025 09:02:43] "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+[13/Apr/2025 09:02:43] "GET /admin/auth/ HTTP/1.1" 200 6128
+[13/Apr/2025 09:02:43] "GET /static/admin/css/dashboard.css HTTP/1.1" 304 0
+[13/Apr/2025 09:02:43] "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 304 0
+Not Found: /api/
+[13/Apr/2025 09:02:57] "GET /api/ HTTP/1.1" 404 2462
+Not Found: /api/ predict/ [name='predict']
+[13/Apr/2025 09:03:09] "GET /api/%20predict/%20[name='predict'] HTTP/1.1" 404 2580
+Not Found: /api/ predict/ [name='predict']
+[13/Apr/2025 09:03:12] "GET /api/%20predict/%20[name='predict'] HTTP/1.1" 404 2580
+Internal Server Error: /api/predict/
+Traceback (most recent call last):
+  File "/home/seanhuang/anaconda3/envs/MIAI/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/seanhuang/anaconda3/envs/MIAI/lib/python3.13/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/home/seanhuang/anaconda3/envs/MIAI/lib/python3.13/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/seanhuang/anaconda3/envs/MIAI/lib/python3.13/site-packages/rest_framework/response.py", line 74, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+  File "/home/seanhuang/anaconda3/envs/MIAI/lib/python3.13/site-packages/rest_framework/renderers.py", line 730, in render
+    template = loader.get_template(self.template)
+  File "/home/seanhuang/anaconda3/envs/MIAI/lib/python3.13/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: rest_framework/api.html
+[13/Apr/2025 09:03:41] "GET /api/predict/ HTTP/1.1" 500 80293
+[13/Apr/2025 09:05:15] "POST /api/predict/ HTTP/1.1" 200 241
+[13/Apr/2025 09:05:20] "POST /api/predict/ HTTP/1.1" 200 373
+[13/Apr/2025 09:05:24] "POST /api/predict/ HTTP/1.1" 200 285
+[13/Apr/2025 09:05:28] "POST /api/predict/ HTTP/1.1" 200 353
+[13/Apr/2025 09:05:32] "POST /api/predict/ HTTP/1.1" 200 289
+[13/Apr/2025 09:05:36] "POST /api/predict/ HTTP/1.1" 200 301
+[13/Apr/2025 09:05:37] "POST /api/predict/ HTTP/1.1" 200 241
+[13/Apr/2025 09:05:40] "POST /api/predict/ HTTP/1.1" 200 277
+[13/Apr/2025 09:05:43] "POST /api/predict/ HTTP/1.1" 200 241
+[13/Apr/2025 09:05:46] "POST /api/predict/ HTTP/1.1" 200 273
+/home/seanhuang/MIAI/backend/predictor/views.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+April 13, 2025 - 09:02:03
+Django version 5.2, using settings 'breast_cancer_django.settings'
+Starting development server at http://127.0.0.1:8010/
+Quit the server with CONTROL-C.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/5.2/howto/deployment/
+[✓] Received image: case7.png
+[✓] Prediction done, returning result
+[✓] Received image: case49.png
+[✓] Prediction done, returning result
+[✓] Received image: case36.png
+[✓] Prediction done, returning result
+[✓] Received image: case32.png
+[✓] Prediction done, returning result
+[✓] Received image: case65.png
+[✓] Prediction done, returning result
+[✓] Received image: case24.png
+[✓] Prediction done, returning result
+[✓] Received image: case26.png
+[✓] Prediction done, returning result
+[✓] Received image: case67.png
+[✓] Prediction done, returning result
+[✓] Received image: case79.png
+[✓] Prediction done, returning result
+[✓] Received image: case49.png
+[✓] Prediction done, returning result
+[✓] Received image: case33.png
+[✓] Prediction done, returning result
+Watching for file changes with StatReloader

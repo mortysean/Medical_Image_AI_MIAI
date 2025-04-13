@@ -190,4 +190,4 @@ def train_unet(model, train_loader, val_loader, num_epochs=50):
             torch.save(model.state_dict(), "results/unet_best.pth")
             print("✅ Model saved!")
 
-train_unet(model, train_loader, val_loader, num_epochs=50)
+train_unet(model, train_loader, val_loader, num_epochs=200)
