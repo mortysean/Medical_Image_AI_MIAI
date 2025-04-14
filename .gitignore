@@ -2,4 +2,5 @@ model/results/
 model/__pycache__
 data/dataset
 backend/results
+backend.log
 *.pth
