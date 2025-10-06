@@ -1,27 +1,72 @@
 #!/bin/bash
+# 一键启动 MIAI 前后端
+# 用法: ./run_all.sh start | stop | restart | status
 
-# === Configuration ===
-DJANGO_PORT=8010
-DASH_PORT=8050
-DJANGO_DIR="backend"
-DASH_DIR="frontend"
+BACKEND_DIR="/home/seanhuang/MIAI/backend"
+FRONTEND_DIR="/home/seanhuang/MIAI/frontend"
+LOG_DIR="/home/seanhuang/MIAI/logs"
 
-echo "📦 [1/3] Starting Django backend (port $DJANGO_PORT)..."
-cd $DJANGO_DIR
-nohup python manage.py runserver 127.0.0.1:$DJANGO_PORT > ../backend.log 2>&1 &
-DJANGO_PID=$!
-cd ..
+BACKEND_PORT=8080   # 后端 uvicorn 端口
+FRONTEND_PORT=8010  # 前端静态端口
 
-echo "📦 [2/3] Starting Dash frontend (port $DASH_PORT)..."
-cd $DASH_DIR
-nohup python dash_app.py > ../dash.log 2>&1 &
-DASH_PID=$!
-cd ..
+mkdir -p "$LOG_DIR"
 
-echo "✅ [3/3] All services started!"
-echo "🔁 Django PID: $DJANGO_PID | Log: backend.log"
-echo "🌐 Dash   PID: $DASH_PID | Log: dash.log"
-echo ""
-echo "📍 Access URLs:"
-echo "🔗 Django API: http://127.0.0.1:$DJANGO_PORT/api/predict/"
-echo "🔗 Dash UI:   http://127.0.0.1:$DASH_PORT"
+start_backend() {
+  echo ">>> 启动后端 (uvicorn, port=$BACKEND_PORT)"
+  cd "$BACKEND_DIR"
+  nohup uvicorn main:app --host 0.0.0.0 --port $BACKEND_PORT \
+    > "$LOG_DIR/backend.log" 2>&1 &
+  echo $! > "$LOG_DIR/backend.pid"
+}
+
+start_frontend() {
+  echo ">>> 启动前端 (http.server, port=$FRONTEND_PORT)"
+  cd "$FRONTEND_DIR"
+  nohup python3 -m http.server $FRONTEND_PORT \
+    > "$LOG_DIR/frontend.log" 2>&1 &
+  echo $! > "$LOG_DIR/frontend.pid"
+}
+
+stop_backend() {
+  if [ -f "$LOG_DIR/backend.pid" ]; then
+    kill -9 $(cat "$LOG_DIR/backend.pid") 2>/dev/null
+    rm -f "$LOG_DIR/backend.pid"
+    echo ">>> 后端已停止"
+  else
+    echo ">>> 后端未运行"
+  fi
+}
+
+stop_frontend() {
+  if [ -f "$LOG_DIR/frontend.pid" ]; then
+    kill -9 $(cat "$LOG_DIR/frontend.pid") 2>/dev/null
+    rm -f "$LOG_DIR/frontend.pid"
+    echo ">>> 前端已停止"
+  else
+    echo ">>> 前端未运行"
+  fi
+}
+
+case "$1" in
+  start)
+    start_backend
+    start_frontend
+    ;;
+  stop)
+    stop_backend
+    stop_frontend
+    ;;
+  restart)
+    $0 stop
+    sleep 2
+    $0 start
+    ;;
+  status)
+    echo "后端 PID: $(cat $LOG_DIR/backend.pid 2>/dev/null || echo not running)"
+    echo "前端 PID: $(cat $LOG_DIR/frontend.pid 2>/dev/null || echo not running)"
+    ;;
+  *)
+    echo "用法: $0 {start|stop|restart|status}"
+    exit 1
+    ;;
+esac

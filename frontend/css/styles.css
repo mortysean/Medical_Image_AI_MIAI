@@ -1,0 +1,148 @@
+/* Base */
+body {
+    font-family: 'Inter', 'Noto Sans', 'Roboto', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #111418; /* 深色背景（Stitch） */
+    color: #E7ECF2;
+  }
+  .container { width: 100%; margin: 0 auto; }
+  
+  /* Cards */
+  .card,
+  .rounded-card {
+    background: #12161b;
+    border: 1px solid #3b4754;
+    border-radius: 0.75rem;
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,.25), 0 4px 6px -2px rgba(0,0,0,.15);
+  }
+  
+  /* Media areas */
+  .media {
+    width: 100%;
+    max-height: 520px;
+    object-fit: contain;
+    background: #0b1015;
+  }
+  
+  /* Buttons */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+    margin: 0;
+    padding: .6rem 1rem;
+    border-radius: .5rem;
+    font-weight: 600;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all .2s ease;
+    line-height: 1;
+  }
+  .btn:disabled { opacity: 0.6; cursor: not-allowed; }
+  .btn.primary, .btn-primary { background-color: #4F46E5; color: white; }
+  .btn.primary:hover, .btn-primary:hover { background-color: #4338CA; }
+  .btn.secondary, .btn-secondary { background-color: #283039; color: #E7ECF2; border-color: #3b4754; }
+  .btn.secondary:hover, .btn-secondary:hover { background-color: #34404d; }
+  
+  /* Toast */
+  .toast {
+    background: #DC2626;
+    color: white;
+    padding: .5rem .75rem;
+    border-radius: .5rem;
+    font-size: .9rem;
+  }
+  .hidden { display: none; }
+  
+  /* Drop zone */
+  .drop-zone { background: #0e1318; transition: border-color .2s ease, box-shadow .2s ease; }
+  .drop-zone.dragover {
+    border-color: #9cabba !important;
+    box-shadow: 0 10px 24px rgba(127, 168, 255, 0.15), inset 0 0 0 1px rgba(122,162,255,.35);
+  }
+  
+  /* Small tweaks */
+  pre { white-space: pre-wrap; }
+  .hero { text-align: center; padding: 20px; }
+  .grid { gap: 20px; }
+  
+  /* ====== 动画与 Loading ====== */
+  
+  /* 全屏 Loading 遮罩 */
+  .loading-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 14, 18, 0.72);
+    backdrop-filter: blur(2px);
+    display: grid;
+    place-items: center;
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .25s ease;
+  }
+  .loading-overlay.show {
+    opacity: 1;
+    pointer-events: all;
+  }
+  .loading-box {
+    display: grid;
+    place-items: center;
+    gap: 12px;
+    padding: 22px 28px;
+    border-radius: 14px;
+    background: linear-gradient(180deg, rgba(24,30,37,.95), rgba(16,22,27,.95));
+    border: 1px solid #3b4754;
+    box-shadow: 0 10px 30px rgba(0,0,0,.35);
+    transform: translateY(8px);
+    animation: a-pop .18s ease-out forwards;
+  }
+  .loading-text { color: #cdd6df; font-weight: 600; letter-spacing: .2px; }
+  
+  /* Spinner */
+  .spinner { width: 54px; height: 54px; animation: spin 1s linear infinite; }
+  .spinner .path {
+    stroke: #7aa2ff;
+    stroke-linecap: round;
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: 0;
+    animation: dash 1.2s ease-in-out infinite;
+  }
+  
+  /* 按钮 Ripple */
+  .btn.ripple { position: relative; overflow: hidden; }
+  .btn .ripple-ink {
+    position: absolute; border-radius: 50%;
+    transform: scale(0); opacity: .25; background: #fff;
+    animation: ripple .6s ease-out forwards;
+    pointer-events: none;
+    mix-blend-mode: overlay;
+  }
+  
+  /* 图片骨架 + 渐显 */
+  .skeleton { position: relative; overflow: hidden; background: #0b1015; }
+  .skeleton::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(100deg, rgba(255,255,255,0), rgba(255,255,255,.06), rgba(255,255,255,0));
+    transform: translateX(-100%); animation: shimmer 1.2s infinite;
+  }
+  .media-fade-in { animation: mediaIn .25s ease-out; }
+  
+  /* 入场动画（与 data-animate 配合） */
+  [data-animate] { opacity: 0; transform: translateY(8px); }
+  [data-animate].in { opacity: 1; transform: translateY(0); transition: all .4s cubic-bezier(.2,.8,.2,1) var(--a-delay, 0ms); }
+  
+  /* keyframes */
+  @keyframes spin { to { transform: rotate(360deg); } }
+  @keyframes dash {
+    0% { stroke-dasharray: 1,200; stroke-dashoffset: 0; }
+    50% { stroke-dasharray: 90,150; stroke-dashoffset: -40px; }
+    100% { stroke-dasharray: 90,150; stroke-dashoffset: -120px; }
+  }
+  @keyframes shimmer { 100% { transform: translateX(100%); } }
+  @keyframes ripple { to { transform: scale(12); opacity: 0; } }
+  @keyframes a-pop { to { transform: translateY(0); } }
+  @keyframes mediaIn { from { opacity: 0 } to { opacity: 1 } }
+  
